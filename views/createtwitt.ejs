@@ -88,7 +88,7 @@
       }
     }
   </style>
-</head> <!-- ✅ ADD THIS -->
+</head>
 <body>
   <div class="post-container">
     <h2>Create a Tweet</h2>
@@ -96,7 +96,7 @@
       <textarea id="tweet-content" name="content" placeholder="What's happening?" required></textarea>
       <div style="display: flex; gap: 10px; margin-top: 10px;">
         <button type="submit" class="post-btn">Tweet</button>
-        <button type="button" onclick="generateWithGemini()">✨ Write with Gemini</button>
+        <button class="post-btn" type="button" onclick="generateWithGemini()">✨ Write with Gemini</button>
       </div>
     </form>
   </div>
@@ -107,7 +107,7 @@
       const textarea = document.getElementById('tweet-content');
       console.log(textarea);
       
-  
+      
       try {
         const res = await fetch('/twitts/generate-gemini', {
           method: 'POST',

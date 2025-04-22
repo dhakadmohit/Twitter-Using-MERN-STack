@@ -83,15 +83,15 @@ module.exports.follwingUser = async(req,res)=>{
 
   if(await loggedUsr.following.includes(id)){
     res.redirect('/auth/');
-    console.log("new friend already there\n")
+    return res.redirect('/auth/');
   }
   else{
-    console.log("new friend added")
     await clickeduser.friends.push(loggedUsr._id);
     await loggedUsr.following.push(id);
-    await loggedUsr.save();
-    await clickeduser.save();
+    loggedUsr.save();
+    clickeduser.save();
   }
+  res.redirect('/auth/');
 }
 
 module.exports.unfollowingUser = async(req, res) => {

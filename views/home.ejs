@@ -24,10 +24,13 @@
             </div>
 
             <form action="/twitts/<%= isFollowing ? 'unfollow' : 'follow' %>/<%= user._id %>" method="POST" style="display:inline;">
-              <button type="submit" class="follow-btn <%= isFollowing ? 'unfollow' : '' %>">
+              <button type="submit" class="follow-btn <%= isFollowing ? 'unfollow-btn' : 'follow-btn' %>">
                 <%= isFollowing ? 'Unfollow' : 'Follow' %>
               </button>
             </form>
+
+
+            
 
           </div>
         <% }) %>
@@ -37,22 +40,7 @@
 
     <!-- Main Feed -->
     <main class="main-feed">
-      <h2>Tweets</h2>
-
-      <!-- Create Tweet Box -->
-      <div class="tweet-input-container">
-        <form action="/twitts/ctweet" method="POST">
-          <textarea 
-            id="tweet-input"
-            name="description"
-            placeholder="What's happening?" 
-            rows="1" 
-            required
-          ></textarea>
-          <button type="submit">Post</button>
-        </form>
-      </div>
-
+      <h2 class="main-feed-heading">Feed</h2>
       <!-- Tweets List -->
       <div id="tweets-container">
         <% allTwitts.forEach(tweet => { %>
@@ -73,28 +61,31 @@
     <aside class="sidebar-right">
       <div class="profile-info">
         <div class="profile-pic-container">
-          <img src="/path/to/profile.jpg" alt="Profile Picture" class="profile-pic">
+          <img src="https://plus.unsplash.com/premium_photo-1738592736106-a17b897c0ab1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGR1bW15JTIwdXNlciUyMGZvciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D" 
+          alt="Profile Picture" class="profile-pic">
         </div>
         <h3>@<%= User.username %></h3>
-        <p>Following: <%= User.following.length %></p>
-        <p>Followers: <%= User.friends.length %></p>
+        
+        <!-- Interactive Followers and Following Section -->
+        <div class="follower-following-stats">
+          <div class="stat-box">
+            <h4>Following</h4>
+            <span class="count following-count"><%= User.following.length %></span>
+          </div>
+          <div class="stat-box">
+            <h4>Followers</h4>
+            <span class="count followers-count"><%= User.friends.length %></span>
+          </div>
+        </div>
+    
         <button onclick="location.href='/twitts/ctweet'">Create Post</button>
         <form action="/auth/logout" method="POST">
-          <button type="submit">Logout</button>
+          <button class="logout" type="submit">Logout</button>
         </form>
       </div>
-    </aside>    
+    </aside>
+     
   </div>
 
-  <!-- Auto-resize tweet box -->
-  <script>
-    const textarea = document.getElementById('tweet-input');
-    if (textarea) {
-      textarea.addEventListener('input', () => {
-        textarea.style.height = 'auto';
-        textarea.style.height = textarea.scrollHeight + 'px';
-      });
-    }
-  </script>
 </body>
 </html>

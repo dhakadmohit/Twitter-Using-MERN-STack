@@ -39,11 +39,27 @@ html, body {
 
 .search-bar {
   width: 100%;
-  padding: 10px;
+  padding: 12px 20px;
   margin-bottom: 20px;
   border-radius: 30px;
-  border: 1px solid #ccc;
+  border: 1px solid #d1d9e0;
+  /* background: #f5f9ff; */
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.search-bar:focus {
+  border-color: #1da1f2;
+  background: #ffffff;
+  box-shadow: 0 0 8px rgba(29, 161, 242, 0.3);
   outline: none;
+  transform: scale(1.02);
+}
+
+.search-bar:hover {
+  /* background-color: #e8f4fd; */
+  border-color: #a5d4f5;
 }
 
 #user-list {
@@ -57,10 +73,11 @@ html, body {
   border-radius: 12px;
   padding: 12px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease;
+  transition: transform 0.3s ease;
+  justify-content: space-between;
 }
 
 .user-card:hover {
@@ -79,33 +96,195 @@ html, body {
   gap: 8px;
 }
 
-.follow-btn, .unfollow-btn {
+/* FOLLOW / UNFOLLOW BUTTON STYLES */
+.follow-btn {
   padding: 6px 14px;
   font-size: 0.9rem;
-  border: none;
   border-radius: 20px;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.3s ease;
+  font-weight: 600;
+  border: none;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
 }
 
-.follow-btn {
+.follow-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Default: Follow */
+.follow-btn.follow-btn {
   background-color: #1da1f2;
   color: white;
 }
 
-.follow-btn:hover {
+.follow-btn.follow-btn:hover {
   background-color: #0d8ddf;
-  transform: scale(1.05);
 }
 
-.unfollow-btn {
-  background-color: #ff4d4f;
+/* Active: Unfollow */
+.follow-btn.unfollow-btn {
+  background-color: white;
+  color: #1da1f2;
+  border: 1px solid #1da1f2;
+}
+
+.follow-btn.unfollow-btn:hover {
+  background-color: #e8f4fd;
+}
+
+/* Right Sidebar Enhancements */
+.sidebar-right {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  background: #ffffff;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+  height: 100vh;
+  border-left: 1px solid #e6ecf0;
+  box-shadow: -2px 0 6px rgba(0, 0, 0, 0.05);
+  animation: fadeInRightSmooth 0.6s ease;
+}
+
+/* Profile Info Section */
+.profile-info {
+  text-align: center;
+}
+
+.profile-pic-container {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block; /* Ensures that the image is treated as a block element for centering */
+}
+
+.profile-info h3 {
+  margin: 0.5rem 0 0.3rem;
+}
+
+.profile-info p {
+  margin: 0.2rem 0;
+  font-size: 0.95rem;
+}
+
+/* Follower and Following Stats Box */
+.follower-following-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  animation: fadeInStats 0.6s ease;
+}
+
+.stat-box {
+  text-align: center;
+  padding: 12px;
+  background: #f0f8ff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+}
+
+.stat-box:hover {
+  background: #dff3ff;
+  transform: translateY(-4px) scale(1.03);
+}
+
+.stat-box h4 {
+  font-size: 1rem;
+  color: #1da1f2;
+  margin-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.count {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #14171a;
+  animation: countPop 0.6s ease;
+}
+
+@keyframes fadeInStats {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes countPop {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInRightSmooth {
+  from {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Buttons */
+button {
+  background: #0d8ddf;
   color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
 }
 
-.unfollow-btn:hover {
-  background-color: #e04344;
-  transform: scale(1.05);
+button:hover {
+  background: #0d8ddf;
+}
+
+form button {
+  background-color: #0d8ddf;
+}
+
+form button:hover {
+  background-color: #0d8ddf;
+}
+.logout {
+  background-color: #1da0f2;  /* Twitter Blue */
+  color: white;
+  padding: 10px 50px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.logout:hover {
+  background-color: #0d8ddf;  /* Darker Twitter Blue on hover */
 }
 
 /* MAIN FEED */
@@ -151,6 +330,12 @@ html, body {
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease;
+
+  /* Prevent long text overflow */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .tweet-card:hover {
@@ -169,6 +354,11 @@ html, body {
   font-size: 1.05rem;
   margin-top: 4px;
   line-height: 1.4;
+
+  /* Ensures wrapping for long words/URLs */
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 /* RIGHT SIDEBAR */
@@ -187,15 +377,27 @@ html, body {
 
 .profile-info {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Ensures everything is centered horizontally */
 }
 
-.profile-pic {
+.profile-pic-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  object-fit: cover;
   margin-bottom: 12px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.profile-pic {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .profile-info h3 {
@@ -210,6 +412,44 @@ html, body {
 .profile-info button {
   width: 100%;
   margin-top: 12px;
+}
+
+/* Additional Styles for Following/Followers Section */
+.follower-following-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  gap: 25px; /* Adds space between the two sections (Followers and Following) */
+  width: 100%;
+}
+
+.stat-box {
+  text-align: center;
+  padding: 12px;
+  background: #f0f8ff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+}
+
+.stat-box:hover {
+  background: #dff3ff;
+  transform: translateY(-4px) scale(1.03);
+}
+
+.stat-box h4 {
+  font-size: 1rem;
+  color: #1da1f2;
+  margin-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.count {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #14171a;
+  animation: countPop 0.6s ease;
 }
 
 /* BUTTON */
@@ -227,6 +467,116 @@ button {
 button:hover {
   background: #0d8ddf;
 }
+
+/* === LEFT SIDEBAR HEADING === */
+.sidebar-left h2 {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #1da1f2;
+  margin-bottom: 1.5rem;
+  position: relative;
+  animation: popIn 0.6s ease-in-out;
+}
+
+.sidebar-left h2::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  margin: 8px auto 0;
+  background-color: #1da1f2;
+  border-radius: 5px;
+  transition: width 0.4s ease;
+}
+
+.sidebar-left h2:hover::after {
+  width: 60px;
+}
+
+/* === MAIN FEED HEADING === */
+.main-feed-heading {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #1da1f2;
+  position: relative;
+  animation: fadeInDrop 0.8s ease;
+}
+
+.main-feed-heading::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  margin: 6px auto 0;
+  background-color: #1da1f2;
+  border-radius: 5px;
+  transition: width 0.4s ease;
+}
+
+.main-feed-heading:hover::after {
+  width: 80px;
+}
+
+/* === RIGHT SIDEBAR PROFILE CARD ANIMATION === */
+.sidebar-right .profile-info {
+  background-color: #f5f9ff;
+  padding: 1rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInRightSmooth 0.6s ease;
+}
+
+.sidebar-right .profile-info:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.sidebar-left::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar-left {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;    /* Firefox */
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInRightSmooth {
+  from {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 
 /* RESPONSIVE */
 @media (max-width: 900px) {

@@ -15,7 +15,7 @@ route.post('/generate-deepseek',generateusigndeepseek);
 
 route.post('/follow/:id',isLoggedin,follwingUser);
 
-route.post('/unfollow:id',isLoggedin,unfollowingUser);
+route.post('/unfollow/:id',isLoggedin,unfollowingUser);
 
 module.exports = route;
 
