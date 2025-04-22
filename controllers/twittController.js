@@ -62,7 +62,7 @@ module.exports.generateusigndeepseek = async(req,res)=>{
       },
       {
         headers: {
-          "Authorization": `Bearer sk-0ad614e102a34c81a6b03df858873309`,
+          "Authorization": ``,
           "Content-Type": "application/json"
         }
       }
