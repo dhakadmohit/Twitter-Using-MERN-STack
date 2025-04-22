@@ -1,0 +1,285 @@
+/* GLOBAL STYLES */
+* {
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f0f2f5;
+  color: #14171a;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  flex-wrap: nowrap;
+}
+
+/* LEFT SIDEBAR */
+.sidebar-left {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  background: #ffffff;
+  padding: 1.5rem 1rem;
+  border-right: 1px solid #e6ecf0;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
+  animation: fadeInLeft 0.5s ease;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.sidebar-left h2 {
+  margin-bottom: 1rem;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+#user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.user-card {
+  background: #f5f9ff;
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-2px);
+  background-color: #e8f4fd;
+}
+
+.username {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.user-card form {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.follow-btn, .unfollow-btn {
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.follow-btn {
+  background-color: #1da1f2;
+  color: white;
+}
+
+.follow-btn:hover {
+  background-color: #0d8ddf;
+  transform: scale(1.05);
+}
+
+.unfollow-btn {
+  background-color: #ff4d4f;
+  color: white;
+}
+
+.unfollow-btn:hover {
+  background-color: #e04344;
+  transform: scale(1.05);
+}
+
+/* MAIN FEED */
+.main-feed {
+  flex: 2;
+  min-width: 300px;
+  padding: 1.2rem;
+  background: #ffffff;
+  border-left: 1px solid #e6ecf0;
+  border-right: 1px solid #e6ecf0;
+  overflow-y: auto;
+  height: 100vh;
+  animation: fadeIn 0.5s ease;
+}
+
+.main-feed::-webkit-scrollbar {
+  display: none;
+}
+
+.tweet-input-container {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 1rem;
+}
+
+#tweet-input {
+  width: 100%;
+  border: none;
+  resize: none;
+  outline: none;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  background: transparent;
+  overflow: hidden;
+}
+
+.tweet-card {
+  background: #f9fbfe;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.tweet-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.tweet-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.tweet-content {
+  font-size: 1.05rem;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* RIGHT SIDEBAR */
+.sidebar-right {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  background: #ffffff;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+  height: 100vh;
+  border-left: 1px solid #e6ecf0;
+  box-shadow: -2px 0 6px rgba(0, 0, 0, 0.05);
+  animation: fadeInRight 0.5s ease;
+}
+
+.profile-info {
+  text-align: center;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-info h3 {
+  margin: 0.5rem 0 0.3rem;
+}
+
+.profile-info p {
+  margin: 0.2rem 0;
+  font-size: 0.95rem;
+}
+
+.profile-info button {
+  width: 100%;
+  margin-top: 12px;
+}
+
+/* BUTTON */
+button {
+  background: #1da1f2;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #0d8ddf;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .sidebar-left,
+  .main-feed,
+  .sidebar-right {
+    width: 100%;
+    max-width: 100%;
+    flex: 100%;
+    order: unset;
+    border: none;
+    box-shadow: none;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .user-card {
+    flex: 1 1 100%;
+  }
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

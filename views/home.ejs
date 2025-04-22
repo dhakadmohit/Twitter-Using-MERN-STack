@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Twitter Clone</title>
+  <link rel="stylesheet" href="../stylesheets/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Left Sidebar -->
+    <aside class="sidebar-left">
+      <h2>Users</h2>
+      <input type="text" placeholder="Search users..." class="search-bar" />
+      <div id="user-list">
+        <% alluser.forEach(function(user) { 
+             const isFollowing = User.following.includes(user._id.toString());
+        %>
+          <div class="user-card">
+            <div class="user-info">
+              <span class="username">@<%= user.username %></span>
+            </div>
+
+            <form action="/twitts/<%= isFollowing ? 'unfollow' : 'follow' %>/<%= user._id %>" method="POST" style="display:inline;">
+              <button type="submit" class="follow-btn <%= isFollowing ? 'unfollow' : '' %>">
+                <%= isFollowing ? 'Unfollow' : 'Follow' %>
+              </button>
+            </form>
+
+          </div>
+        <% }) %>
+      </div>
+    </aside>
+    
+
+    <!-- Main Feed -->
+    <main class="main-feed">
+      <h2>Tweets</h2>
+
+      <!-- Create Tweet Box -->
+      <div class="tweet-input-container">
+        <form action="/twitts/ctweet" method="POST">
+          <textarea 
+            id="tweet-input"
+            name="description"
+            placeholder="What's happening?" 
+            rows="1" 
+            required
+          ></textarea>
+          <button type="submit">Post</button>
+        </form>
+      </div>
+
+      <!-- Tweets List -->
+      <div id="tweets-container">
+        <% allTwitts.forEach(tweet => { %>
+          <div class="tweet-card">
+            <div class="tweet-header">
+              <strong>@<%= tweet.createdBy?.username || "Unknown" %></strong> 
+              <span class="tweet-time">
+                <%= tweet.createdAt ? tweet.createdAt.toLocaleString() : "Unknown date" %>
+              </span>
+            </div>
+            <p class="tweet-content"><%= tweet.description || "No content" %></p>
+          </div>
+        <% }) %>
+      </div>
+    </main>
+
+    <!-- Right Sidebar -->
+    <aside class="sidebar-right">
+      <div class="profile-info">
+        <div class="profile-pic-container">
+          <img src="/path/to/profile.jpg" alt="Profile Picture" class="profile-pic">
+        </div>
+        <h3>@<%= User.username %></h3>
+        <p>Following: <%= User.following.length %></p>
+        <p>Followers: <%= User.friends.length %></p>
+        <button onclick="location.href='/twitts/ctweet'">Create Post</button>
+        <form action="/auth/logout" method="POST">
+          <button type="submit">Logout</button>
+        </form>
+      </div>
+    </aside>    
+  </div>
+
+  <!-- Auto-resize tweet box -->
+  <script>
+    const textarea = document.getElementById('tweet-input');
+    if (textarea) {
+      textarea.addEventListener('input', () => {
+        textarea.style.height = 'auto';
+        textarea.style.height = textarea.scrollHeight + 'px';
+      });
+    }
+  </script>
+</body>
+</html>
