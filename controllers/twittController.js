@@ -1,8 +1,6 @@
 const userModel = require("../models/userModel");
 const twitModel = require("../models/twitModel")
-const axios = require("axios");
 
-// const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken")
 
 module.exports.renderingCreateTwiit = (req,res)=>{
@@ -10,9 +8,7 @@ module.exports.renderingCreateTwiit = (req,res)=>{
 }
 
 module.exports.renderingPostTweet = async (req,res)=>{
-    // console.log(req.user.id);
     
-
     const user = await userModel.findById(req.user.id);
 
     let {content}=req.body
@@ -48,32 +44,6 @@ module.exports.likingController = async(req,res)=>{
     }catch(e){
         console.log(e.message)
     }
-}
-
-module.exports.generateusigndeepseek = async(req,res)=>{
-  try {
-    const prompt = req.body.prompt || "Write a catchy tweet about tech or trending news.";
-
-    const response = await axios.post(
-      "https://api.deepseek.com",
-      {
-        model: "deepseek-chat",
-        messages: [{ role: "user", content: prompt }]
-      },
-      {
-        headers: {
-          "Authorization": ``,
-          "Content-Type": "application/json"
-        }
-      }
-    );
-
-    const tweet = response.data.choices[0].message.content;
-    res.json({ generatedTweet: tweet.trim() });
-  } catch (error) {
-    console.error("❌ DeepSeek error:", error.message);
-    res.status(500).json({ generatedTweet: "Error generating tweet." });
-  }
 }
 
 module.exports.follwingUser = async(req,res)=>{
