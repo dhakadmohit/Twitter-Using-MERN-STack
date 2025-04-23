@@ -15,22 +15,26 @@
       <h2>Users</h2>
       <input type="text" placeholder="Search users..." class="search-bar" />
       <div id="user-list">
-        <% alluser.forEach(function(user) {
-            const isFollowing = User.following.includes(user._id.toString());
-        %>
-          <div class="user-card">
-            <div class="user-info">
-              <span class="username">@<%= user.username %></span>
+        <% if (alluser.length > 0) { %>
+          <% alluser.forEach(function(user) {
+              const isFollowing = User.following.includes(user._id.toString());
+          %>
+            <div class="user-card">
+              <div class="user-info">
+                <span class="username">@<%= user.username %></span>
+              </div>
+              <form action="/twitts/<%= isFollowing ? 'unfollow' : 'follow' %>/<%= user._id %>" method="POST" style="display:inline;">
+                <button type="submit" class="follow-btn <%= isFollowing ? 'unfollow-btn' : 'follow-btn' %>">
+                  <%= isFollowing ? 'Unfollow' : 'Follow' %>
+                </button>
+              </form>
             </div>
-
-            <form action="/twitts/<%= isFollowing ? 'unfollow' : 'follow' %>/<%= user._id %>" method="POST" style="display:inline;">
-              <button type="submit" class="follow-btn <%= isFollowing ? 'unfollow-btn' : 'follow-btn' %>">
-                <%= isFollowing ? 'Unfollow' : 'Follow' %>
-              </button>
-            </form>
-          </div>
-        <% }) %>
+          <% }) %>
+        <% } else { %>
+          <p>No users found.</p>
+        <% } %>
       </div>
+      
     </aside>
     
 
@@ -39,18 +43,23 @@
       <h2 class="main-feed-heading">Feed</h2>
       <!-- Tweets List -->
       <div id="tweets-container">
-        <% allTwitts.forEach(tweet => { %>
-          <div class="tweet-card">
-            <div class="tweet-header">
-              <strong>@<%= tweet.createdBy?.username || "Unknown" %></strong> 
-              <span class="tweet-time">
-                <%= tweet.createdAt ? tweet.createdAt.toLocaleString() : "Unknown date" %>
-              </span>
+        <% if (allTwitts.length > 0) { %>
+          <% allTwitts.forEach(tweet => { %>
+            <div class="tweet-card">
+              <div class="tweet-header">
+                <strong>@<%= tweet.createdBy?.username || "Unknown" %></strong> 
+                <span class="tweet-time">
+                  <%= tweet.createdAt ? tweet.createdAt.toLocaleString() : "Unknown date" %>
+                </span>
+              </div>
+              <p class="tweet-content"><%= tweet.description || "No content" %></p>
             </div>
-            <p class="tweet-content"><%= tweet.description || "No content" %></p>
-          </div>
-        <% }) %>
+          <% }) %>
+        <% } else { %>
+          <p>No tweets to show.</p>
+        <% } %>
       </div>
+      
     </main>
 
     <!-- Right Sidebar -->

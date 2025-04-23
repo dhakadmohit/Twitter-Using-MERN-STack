@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 
-mongoose.connect("mongodb://127.0.0.1:27017/twitterclone")
+// ✅ URL-encoded password: Mdz3ix52Q%rAtJm => Mdz3ix52Q%25rAtJm
+// ✅ Add a database name at the end (e.g., "twitterapp")
+
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
 .then(() => {
   console.log("✅ MongoDB connected");
 })
