@@ -11,7 +11,7 @@ route.post("/create-post",isLoggedin,renderingPostTweet);
 
 route.get("/like/:id",isLoggedin,likingController);
 
-route.post('/generate-deepseek',generateusigndeepseek);
+//route.post('/generate-deepseek',generateusigndeepseek);
 
 route.post('/follow/:id',isLoggedin,follwingUser);
 

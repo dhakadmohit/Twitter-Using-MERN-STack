@@ -9,14 +9,14 @@
 </head>
 <body>
   <div class="container">
-    
+
     <!-- Left Sidebar -->
     <aside class="sidebar-left">
       <h2>Users</h2>
       <input type="text" placeholder="Search users..." class="search-bar" />
       <div id="user-list">
-        <% alluser.forEach(function(user) { 
-             const isFollowing = User.following.includes(user._id.toString());
+        <% alluser.forEach(function(user) {
+            const isFollowing = User.following.includes(user._id.toString());
         %>
           <div class="user-card">
             <div class="user-info">
@@ -28,10 +28,6 @@
                 <%= isFollowing ? 'Unfollow' : 'Follow' %>
               </button>
             </form>
-
-
-            
-
           </div>
         <% }) %>
       </div>
@@ -87,5 +83,8 @@
      
   </div>
 
+  
+
 </body>
 </html>
+
