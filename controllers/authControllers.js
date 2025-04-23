@@ -10,7 +10,7 @@ module.exports.renderingLoginPage = (req,res)=>{
 
 module.exports.renderinglogoutpage = (req,res)=>{
     res.clearCookie("token");
-    console.log(req.cookies.token);
+    // console.log(req.cookies.token);
     res.render("login");
 }
 
@@ -34,11 +34,11 @@ module.exports.renderingHomePage = async (req,res)=>{
 
 module.exports.registerUser = async (req, res) => {
     try {
-        console.log(req.body);
+        // console.log(req.body);
         
       let { username, password, email } = req.body;
 
-      console.log(username);
+      // console.log(username);
       
       let user = await userModel.findOne({ email });
   
@@ -56,7 +56,7 @@ module.exports.registerUser = async (req, res) => {
         password: hashedPassword
       });
 
-      console.log(newUser);
+      // console.log(newUser);
       await newUser.save();
 
 
@@ -71,16 +71,16 @@ module.exports.registerUser = async (req, res) => {
 
 module.exports.loginUser =  async (req,res)=>{
 
-    console.log(req.body);
+    // console.log(req.body);
     let{email,password} = req.body
-    console.log(email);
+    // console.log(email);
 
     let user = await userModel.findOne({"username":email});
-    console.log(user);
+    // console.log(user);
 
     if(user){
 
-        console.log("user is coming");
+        // console.log("user is coming");
 
         bcrypt.compare(password,user.password, function(err,result) {
             

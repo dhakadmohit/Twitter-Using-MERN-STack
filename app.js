@@ -19,7 +19,9 @@ const db = require("./config/dbConnection");
 //calling routes
 const authroutes = require("./routes/authRoutes");
 const twittsroutes = require("./routes/twittsRoutes")
+const landingPage = require("./routes/landingPageRoute")
 
+app.use("/",landingPage)
 app.use("/auth",authroutes)
 app.use("/twitts",twittsroutes)
 
