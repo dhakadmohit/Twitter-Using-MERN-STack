@@ -2,7 +2,9 @@ const express = require("express");
 const app  = express();
 const path = require("path")
 const cookieParser = require('cookie-parser');
+require('dotenv').config();
 app.use(cookieParser());
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -21,7 +23,8 @@ const twittsroutes = require("./routes/twittsRoutes")
 app.use("/auth",authroutes)
 app.use("/twitts",twittsroutes)
 
+const PORT = process.env.PORT || 3000;
 
-app.listen(3000,()=>{
+app.listen(PORT,()=>{
     console.log("server is running")
 })
